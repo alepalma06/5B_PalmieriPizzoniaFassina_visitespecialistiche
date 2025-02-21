@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ospedale 
+    </title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1 class="text-center mt-3">Prenota la tua visita</h1>
+
+    <!-- selezione categoria [ NAV BAR ]-->
+    <div class="container mt-3"><div id="navbar" class="btn-group mt-3" role="group" aria-label="Basic radio toggle button group"></div></div>
+
+    <div class="container mt-3 d-flex justify-content-end">
+    <!-- Bottone trigger -->
+        <button type="button" class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">Prenota -></button>
+
+    <!-- Modale -->
+        <div class="modal fade modalltop" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-center">Prenota</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div id="form" class="modal-body">
+                    
+                </div>
+                <div class="modal-footer">
+                    <button id="Annulla" type="button" class="btn btn-outline-danger btn-lg" data-bs-dismiss="modal">Annulla</button>
+                    <button id="Prenota" type="button" class="btn btn-outline-success btn-lg">Prenota -> </button>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="divBtn" class="container mt-3 d-flex justify-content-between">
+        <button id="precedente" type="button" class="btn btn-info btn-lg"><- Precedente</button>
+        <button id="successiva" type="button" class="btn btn-info btn-lg">Successiva -></button>
+    </div>
+    <div class="container  d-flex justify-content-center mt-3">
+        <table id="tabella" class="table table-bordered border-info bg-light text-center align-middle">
+
+    </table></div>
+    
+    <footer class="blockquote-footer text-center py-3 mt-auto mt-3">
+    </footer>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="module" src="index.js"></script>
+</body>
+</html>
