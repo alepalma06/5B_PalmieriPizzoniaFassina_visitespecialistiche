@@ -53,20 +53,20 @@ export const createForm = (parentElement) => {
                                     table1.setData(updatedData);
                                     table1.render();
                                     document.querySelector("#data").value = "";
-                                    document.querySelector("#ora").value = "8";
+                                    document.querySelector("#ora").value = 8;
                                     document.querySelector("#nome").value = "";
                                 } else {
                                     outputform.innerHTML = "KO";
                                     console.log("errore dentro try");
                                     document.querySelector("#data").value = "";
-                                    document.querySelector("#ora").value = "8";
+                                    document.querySelector("#ora").value = 8;
                                     document.querySelector("#nome").value = "";
                                 }
                             } catch (error) {
                                 outputform.innerHTML = "KO";
                                 console.log("errore dentro catch", error);
                                 document.querySelector("#data").value = "";
-                                document.querySelector("#ora").value = "8";
+                                document.querySelector("#ora").value = 8;
                                 document.querySelector("#nome").value = "";
                             }
                         }
@@ -75,7 +75,7 @@ export const createForm = (parentElement) => {
                 
 
             document.querySelector("#data").value = "";
-            document.querySelector("#ora").value = "8";
+            document.querySelector("#ora").value = 8;
             document.querySelector("#nome").value = "";
         },
     };
