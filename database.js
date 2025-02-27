@@ -1,8 +1,8 @@
 const fs = require('fs');
 const mysql = require('mysql2');
-const conf = JSON.parse(fs.readFileSync('./public/conf.json'));
+const conf = JSON.parse(fs.readFileSync('./public/conf.json'));//leggo il conf json
 conf.ssl = {
-   ca: fs.readFileSync(__dirname + '/ca.pem')
+   ca: fs.readFileSync(__dirname + '/ca.pem')//leggo il ca pem
 };
 const connection = mysql.createConnection(conf);
 
@@ -20,13 +20,14 @@ const executeQuery = (sql) => {
 };
 
 const database = {
-   createTable: async () => {
+   createTable: async () => {//creo tabella type nel caso nn esiste
       await executeQuery(`
          CREATE TABLE IF NOT EXISTS type (
          id INT PRIMARY KEY AUTO_INCREMENT,
          name VARCHAR(20) NOT NULL
          )`
       );
+      //creo tabella booking se nn esiste
       await executeQuery(`
          CREATE TABLE IF NOT EXISTS booking (
          id INT PRIMARY KEY AUTO_INCREMENT,
@@ -38,6 +39,7 @@ const database = {
          )`
       );
    },
+   //faccio insert nella tabella booking
    insert: async (booking) => {
       let sql = `
          INSERT INTO booking (idType, date, hour, name)
@@ -49,27 +51,27 @@ const database = {
       ;
       return await executeQuery(sql);
    },
-   delete: (id) => {
+   delete: (id) => {//delete ma nn viene usato
       let sql = `
         DELETE FROM booking
         WHERE id=${id}`
       ;
       return executeQuery(sql);
    },
-   select: async () => {
+   select: async () => {//per date_format va a prendere solamente yy-mm-dd senza andare a prendere tutto il resto che restituisce il formato date
       let sql = `
     SELECT id, idType, DATE_FORMAT(date, '%Y-%m-%d') AS date, hour, name
     FROM booking
 `;
       let result = await executeQuery(sql);
   
-      if (!result || result.length === 0) {
+      if (!result || result.length === 0) {//se non ce niente restituisce vuoto
           return [];
       }
   
       return result;
   },   
-   drop: async () => {
+   drop: async () => {//cancella completamente i contenuto ma nn la usiamo
       let sql = `
             DROP TABLE IF EXISTS type
            `;
@@ -79,10 +81,10 @@ const database = {
            ;
       await executeQuery(sql);
    },
-   getTypes: async () => {
+   getTypes: async () => {//seleziona tutto il contenuto della tabella type quindi id e name
       let sql = `SELECT * FROM type;  `
       return await executeQuery(sql);
    }
 };
 
-module.exports = database;
+module.exports = database;//esposta database
