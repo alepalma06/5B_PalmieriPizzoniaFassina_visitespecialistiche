@@ -3,22 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ospedale 
+    <title>Visite Specialistiche
     </title>
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <h1 class="text-center mt-3">Prenota la tua visita</h1>
-
+    <h1 class="text-center mt-3">Prenota la tua visita specialistica</h1>
     <!-- selezione categoria [ NAV BAR ]-->
     <div class="container mt-3"><div id="navbar" class="btn-group mt-3" role="group" aria-label="Basic radio toggle button group"></div></div>
 
     <div class="container mt-3 d-flex justify-content-end">
     <!-- Bottone trigger -->
         <button type="button" class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">Prenota -></button>
-
     <!-- Modale -->
         <div class="modal fade modalltop" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -32,7 +30,7 @@
                 </div>
                 <div class="modal-footer">
                     <button id="Annulla" type="button" class="btn btn-outline-danger btn-lg" data-bs-dismiss="modal">Annulla</button>
-                    <button id="Prenota" type="button" class="btn btn-outline-success btn-lg">Prenota -> </button>
+                    <button id="Prenotabottone" type="button" class="btn btn-outline-success btn-lg">Prenota -> </button>
                 </div>
                 </div>
             </div>
@@ -49,8 +47,11 @@
     </table></div>
     
     <footer class="blockquote-footer text-center py-3 mt-auto mt-3">
+        Realizzato da Palmieri Pizzonia Fassina
     </footer>
-    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script> 
     <script type="module" src="index.js"></script>
 </body>
 </html>
