@@ -1,6 +1,6 @@
 export const tableComponent = () => {
-    let data = {};
-    let tipo = 1;
+    let data = [];
+    let tipo = 1; // Tipo iniziale 
     let PrecedenteSuccessiva = 0;
     let templateGiorni = `
         <tr class="tbl1">
@@ -15,12 +15,18 @@ export const tableComponent = () => {
     let parentElement;
 
     return {
-        setData: (dato) => { data = dato; },
+        setData: (dato) => { 
+            data = dato; 
+        },
         setParentElement: (pr) => {
             parentElement = pr;
         },
-        start: (startday) => { PrecedenteSuccessiva = startday; },
-        setTipo: (tip) => { tipo = tip; },
+        start: (startday) => { 
+            PrecedenteSuccessiva = startday; 
+        },
+        setTipo: (tip) => { 
+            tipo = tip; 
+        },
         render: () => {
             const exportData = (date) => {
                 let d = date.getDate().toString().padStart(2, '0');
@@ -43,25 +49,40 @@ export const tableComponent = () => {
                 date.setDate(date.getDate() - (giornoCorrente - 1));
             }
 
+            // Creazione intestazioni giorni
             lisSett.forEach((day, index) => {
                 let giornoTab = `${day}<br>${exportData(date)}`;
                 html = html.replace("#D", giornoTab);
                 date.setDate(date.getDate() + 1);
             });
 
+            // Ripristino della data
             date.setDate(date.getDate() - 5);
+
+            // Creazione delle righe per le ore
             ore.forEach(ora => {
                 html += `<tr class="tbl1"><td>${ora}</td>`;
+                let tempDate = new Date(date);
+
                 for (let i = 0; i < lisSett.length; i++) {
-                    let giorno = exportData(date).split("-").join("");
+                    let giorno = exportData(tempDate).split("-").join("");
                     let chiave = `${tipo}-${giorno}-${ora}`;
-                    if (chiave in data) {
-                        html += `<td class="table-info">${data[chiave]}</td>`;
+
+                    const filteredData = data.filter(booking => 
+                        booking.idType == tipo && 
+                        booking.date == giorno && 
+                        booking.hour == ora
+                    );
+
+                    if (filteredData.length > 0) {
+                        html += `<td class="table-info">${filteredData[0].name}</td>`;
                     } else {
                         html += `<td></td>`;
                     }
-                    date.setDate(date.getDate() + 1);
+
+                    tempDate.setDate(tempDate.getDate() + 1);
                 }
+
                 date.setDate(date.getDate() - 5);
                 html += `</tr>`;
             });
