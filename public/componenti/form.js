@@ -43,18 +43,26 @@ export const createForm = (parentElement) => {
                                 hour: ora,
                                 name: nome
                             };
-                            console.log(booking);
+                            console.log("nuova prenotazione",booking);
                             try {
                                 const result = await middleware.add(booking); 
+                                console.log("fatto add")
                                 if (result.result === "ok") {
                                     outputform.innerHTML = "OK";
+                                    console.log("Prenotazione aggiunta")
                                     const updatedData = await middleware.load();
+                                    console.log("prenotazioni aggiornate",updatedData)
                                     dato = updatedData;
                                     table1.setData(updatedData);
+                                    console.log("fatto setdata")
+                                    table1.setTipo(tipo)
+                                    console.log("fatto settipo")
                                     table1.render();
+                                    console.log("fatto render")
                                     document.querySelector("#data").value = "";
                                     document.querySelector("#ora").value = 8;
                                     document.querySelector("#nome").value = "";
+                                    console.log("valori reimpostati")
                                 } else {
                                     outputform.innerHTML = "KO";
                                     console.log("errore dentro try");
