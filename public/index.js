@@ -1,16 +1,16 @@
-const createMiddleware = () => {
+const createMiddleware = () => {//crea il middleware
     return {
-        load: async () => {
-            const response = await fetch("/booking");
+        load: async () => {//per caricare
+            const response = await fetch("/booking");//fa chiamata a tabella booking
             return await response.json();
         },
-        delete: async (id) => {
+        delete: async (id) => {//per cancellare ma nn la usiamo
             const response = await fetch("/delete/" + id, {
                 method: 'DELETE',
             });
             return await response.json();
         },
-        add: async (booking) => {
+        add: async (booking) => {//per inserire nella tabella
             const response = await fetch("/insert", {
                 method: 'POST',
                 headers: {
@@ -23,12 +23,12 @@ const createMiddleware = () => {
     };
   };
   
-  export default createMiddleware;
-  
+  export default createMiddleware;//esporto
+//importo i componenti
 import { tableComponent } from './componenti/tabella.js';
 import { NavBarComponent } from './componenti/navbar.js';
 import { createForm } from './componenti/form.js';
-
+//li inizializzo
 const tabella = document.getElementById("tabella");
 const precendente = document.getElementById("precedente");
 const successiva = document.getElementById("successiva");
@@ -40,38 +40,39 @@ const middleware = createMiddleware();
 const navBarComp = NavBarComponent();
 const form = createForm(formElement);
 const table1 = tableComponent();
-
+//faccio fetch types che si trova nel file server
 fetch("/types")
   .then(response => response.json())
   .then(types => {
-    navBarComp.setParentElement(navbar);
-    navBarComp.render(form, table1, types);
+    navBarComp.setParentElement(navbar);//li passo a navbar
+    navBarComp.render(form, table1, types);//faccio la render
 
     // Carica tutte le prenotazioni
     return middleware.load();
   })
   .then(data => {
+    //mostra i dati in console log
     console.log("Dati caricati:", data);
     // Gestisci i dati delle prenotazioni mantenendo idType
     form.setLabels(data);
     table1.setData(data);  // Passa tutte le prenotazioni al componente tabella
-    table1.setParentElement(tabella);
-    table1.render();
+    table1.setParentElement(tabella);//imposta dati
+    table1.render();//fa render
 
-    // Gestisci i cambiamenti tra settimane
+    // se clicco pulsante precedente
     precendente.onclick = () => {
-      starDay -= 7;
+      starDay -= 7;//sotrae una settimana
       table1.start(starDay);
       table1.render();
     };
-
+    //se clicco pulsanre successivo
     successiva.onclick = () => {
-      starDay += 7;
+      starDay += 7;//aggiunge una settimana
       table1.start(starDay);
       table1.render();
     };
 
-    // Rende il form per aggiungere prenotazioni
+    // fa render form per aggiungere prenotazioni
     form.render(table1, middleware);
   })
   .catch(error => console.error("Errore nel caricamento dei dati:", error));
