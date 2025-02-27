@@ -54,7 +54,6 @@ fetch("/types")
     console.log("Dati caricati:", data);
     // Gestisci i dati delle prenotazioni mantenendo idType
     form.setLabels(data);
-    console.log("Dati form:", data[0]);
     table1.setData(data);  // Passa tutte le prenotazioni al componente tabella
     table1.setParentElement(tabella);
     table1.render();
