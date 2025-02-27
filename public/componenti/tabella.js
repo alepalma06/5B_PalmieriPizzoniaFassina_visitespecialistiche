@@ -1,6 +1,6 @@
 export const tableComponent = () => {
     let data = [];
-    let tipo = 1; // Tipo iniziale 
+    let tipo = 1; 
     let PrecedenteSuccessiva = 0;
     let templateGiorni = `
         <tr class="tbl1">
@@ -36,7 +36,7 @@ export const tableComponent = () => {
             };
 
             const lisSett = ["Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì"];
-            const ore = ["8", "9", "10", "11", "12"];
+            const ore = [8, 9, 10, 11, 12];
             let html = templateGiorni;
             let date = new Date();
             let giornoCorrente = date.getDay() - PrecedenteSuccessiva;
@@ -49,29 +49,23 @@ export const tableComponent = () => {
                 date.setDate(date.getDate() - (giornoCorrente - 1));
             }
 
-            // Creazione intestazioni giorni
             lisSett.forEach((day, index) => {
                 let giornoTab = `${day}<br>${exportData(date)}`;
                 html = html.replace("#D", giornoTab);
                 date.setDate(date.getDate() + 1);
             });
 
-            // Ripristino della data
             date.setDate(date.getDate() - 5);
 
-            // Creazione delle righe per le ore
             ore.forEach(ora => {
                 html += `<tr class="tbl1"><td>${ora}</td>`;
                 let tempDate = new Date(date);
 
                 for (let i = 0; i < lisSett.length; i++) {
-                    let giorno = exportData(tempDate).split("-").join("");
-                    let chiave = `${tipo}-${giorno}-${ora}`;
-
+                    let giorno = exportData(tempDate);
+                    
                     const filteredData = data.filter(booking => 
-                        booking.idType == tipo && 
-                        booking.date == giorno && 
-                        booking.hour == ora
+                        booking.idType == tipo && booking.date === giorno && booking.hour == ora
                     );
 
                     if (filteredData.length > 0) {
